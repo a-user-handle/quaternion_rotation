@@ -76,7 +76,7 @@ class QCube:
 			q = axes[axis]
 
 		except KeyError:
-			print("invalid selection for axis. Value must be in 0 to 6.")
+			print("invalid selection for axis. {0:x, 1:y, 2:z, 3:xy, 4:xz, 5:yz, 6:xyz}.")
 			exit()
 
 		for i in range(len(self.verts)):
@@ -91,9 +91,7 @@ pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((W,H))
 running = True
-
 cube = QCube()
-axis = None
 
 while running:
 	for event in pygame.event.get():
@@ -105,6 +103,6 @@ while running:
 	cube._show(screen)
 	pygame.display.flip()
 	clock.tick(60)
-
+	
 pygame.quit()
 exit()
