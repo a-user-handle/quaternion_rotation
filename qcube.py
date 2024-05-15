@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
 from pygame.locals import * 
-from math import sqrt, cos, sin, pi, e
+from numpy import sqrt, cos, sin, pi, e
 
 def length(q):
     return sqrt(q[0]**2 + q[1]**2 + q[2]**2 + q[3]**2)
@@ -15,9 +15,9 @@ def qMul(q1,q2):
     w,x,y,z = q2[0], q2[1], q2[2], q2[3]
 
     return [a*w - b*x - c*y - d*z,
-        a*x + b*w + c*z - d*y,
-        a*y - b*z + c*w + d*x,
-        a*z + b*y - c*x + d*w]
+            a*x + b*w + c*z - d*y,
+            a*y - b*z + c*w + d*x,
+            a*z + b*y - c*x + d*w]
 
 def project2d(p):
     distance = 2
@@ -61,7 +61,7 @@ class QCube:
          pA, pB = self.prep_for_show(e)
          pygame.draw.aaline(screen, color, pA, pB)
 
-    def _rotate(self,theta,axis=4):
+   def _rotate(self,theta,axis=4):
       #{0:x, 1:y, 2:z, 3:xy, 4:xz, 5:yz, 6:xyz}
       angle = pi * theta/360
       axes = {0: [cos(angle),-sin(angle),0,0],
@@ -92,15 +92,15 @@ running = True
 cube = QCube()
 
 while running:
-   for event in pygame.event.get():
-      if event.type == QUIT:
-         running = False
-
+   clock.tick(120)
    screen.fill((0,0,0))
-   cube._rotate(1, axis=0)
+   for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+         running = False    
+   cube._rotate(1.5,0)
+   cube._rotate(3,1)
+   cube._rotate(2,2)
    cube._show(screen)
    pygame.display.flip()
-   clock.tick(60)
-    
 pygame.quit()
 exit()
